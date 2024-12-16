@@ -50,10 +50,10 @@ class Kunde{
 
 let kunde = new Kunde
 kunde.id = 1
-kunde.benutzername = "Klaus"
-kunde.kennwort = "a123"
-kunde.vorname = "Klaus"
-kunde.nachname = "Schöttler"
+kunde.benutzername = "pk"
+kunde.kennwort = "123"
+kunde.vorname = "Pit"
+kunde.nachname = "Kiff"
 
 class Kundenberater{
 	constructor(){
@@ -86,21 +86,17 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
 
-	// Die Werte, die der Kunde im Formular eingegeben hat, werden an den Server gesendet.
-	// Der Wert der Variablen Betrag wird aus dem body der Kundenanfrage (req) ausgelesen und zugewiesen an die lokale Variable
-	// namens betrag.
+	let benutzername = req.body.Benutzername;
+	console.log("login: Benutzername " + benutzername)
 
 	let kennwort = req.body.Kennwort
 	console.log("login: Kennwort: " + kennwort)
 
-	let benutzername = req.body.Benutzername;
-	console.log("login: Benutzername " + benutzername)
-
 	if(kunde.benutzername === benutzername && kunde.kennwort === kennwort){
 		res.render('index.ejs',{})
 	} else {
-	res.render('login.ejs',{
-		Meldung: "Versuchen sie es erneut"
+		res.render('login.ejs',{
+			Meldung: "Versuchen sie es erneut"
 	})};
 });
 
